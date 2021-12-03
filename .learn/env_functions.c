@@ -11,7 +11,7 @@ char *_getenv(char *name)
 		i++;
 	if (environ[i] != NULL)
 	{
-		return (strstr(environ[i], name) + strlen(name) + 1);
+		return (strstr(environ[i], name) + strlen(name));
 	}
 	return (NULL);
 }
