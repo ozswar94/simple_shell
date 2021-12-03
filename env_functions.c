@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include "shell.h"
 #include "printf.h"
+#include "str_func.h"
 
 
-void print_env()
+void print_env(void)
 {
 	extern char **environ;
 	int i = 0;
@@ -24,7 +25,7 @@ char *_getenv(char *name)
 		i++;
 	if (environ[i] != NULL)
 	{
-		return (_strstr(environ[i], name) + _strlen(name));
+		return (_strstr(environ[i], name) + _strlen(name) + 1);
 	}
 	return (NULL);
 }

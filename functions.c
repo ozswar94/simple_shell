@@ -1,4 +1,5 @@
 #include "format.h"
+#include "printf.h"
 
 /* FONCTION POUR PRINT UN CHAR */
 /**
