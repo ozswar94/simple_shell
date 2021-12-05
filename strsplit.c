@@ -28,7 +28,7 @@ char **_strsplit(char *str, int c)
 	unsigned int i, j, k;
 	unsigned int word = 0;
 	char **tab_word;
-	
+
 	for (i = 0; str[i] != '\0'; i++)
 		if (str[i] == c)
 			word++;
