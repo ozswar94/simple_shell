@@ -6,7 +6,7 @@
 
 char *search_path(char *command)
 {
-	int i, j;
+	int i;
 	struct stat buf;
 	char *command_path;
 	char **path_directory;
@@ -28,8 +28,10 @@ char *search_path(char *command)
 
 		if (stat(command_path, &buf) == 0)
 		{
-			for (j = 0; j < i; j++)
-				free(path_directory[j]);
+			for (; i >= 0; i--)
+			{
+				free(path_directory[i]);
+			}
 			free(path_directory);
 			return (command_path);
 		}
@@ -37,8 +39,10 @@ char *search_path(char *command)
 		free(command_path);
 		i++;
 	}
-	for (j = 0; j < i; j++)
-		free(path_directory[j]);
+	for (; i >= 0; i--)
+	{
+		free(path_directory[i]);
+	}
 	free(path_directory);
 	return (NULL);
 }

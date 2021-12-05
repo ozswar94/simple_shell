@@ -18,8 +18,7 @@ void clean_command(char **command)
 {
 	int i;
 
-	i = 0;
-	while (command[i++] != NULL)
+	for (i = 0; command[i] != NULL; i++)
 	{
 		free(command[i]);
 	}
