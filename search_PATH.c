@@ -28,7 +28,7 @@ char *search_path(char *command)
 
 		if (stat(command_path, &buf) == 0)
 		{
-			for (j = 0; i > j; j++)
+			for (j = 0; j < i; j++)
 				free(path_directory[j]);
 			free(path_directory);
 			return (command_path);
@@ -37,7 +37,7 @@ char *search_path(char *command)
 		free(command_path);
 		i++;
 	}
-	for (j = 0; i > j; j++)
+	for (j = 0; j < i; j++)
 		free(path_directory[j]);
 	free(path_directory);
 	return (NULL);

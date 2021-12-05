@@ -6,10 +6,24 @@
 #include <string.h>
 #include "shell.h"
 
-void clean_command(char *command)
+/*Remove new line*/
+void clean_line(char *command)
 {
 	if (command[_strlen(command) - 1] == '\n')
 		command[_strlen(command) - 1] = '\0';	
+}
+
+/*free command*/
+void clean_command(char **command)
+{
+	int i;
+
+	i = 0;
+	while (command[i++] != NULL)
+	{
+		free(command[i]);
+	}
+	free(command);
 }
 
 int simple_shell(void)
@@ -18,7 +32,6 @@ int simple_shell(void)
 	char *command_path;
 	char **command;
 	size_t len_line = 0;
-	int i;
 
 	while (1)
 	{
@@ -34,7 +47,7 @@ int simple_shell(void)
 		fflush(stdin);
 		if (line[0] == '\n')
 			continue;
-
+		clean_line(line);
 		command = _strsplit(line, ' ');
 		if (command == NULL)
 			continue;
@@ -45,7 +58,6 @@ int simple_shell(void)
 		if (check_built_in(command[0]) == 0)
 		{
 /*3 - run the command in a new processus and wait the parent processus*/
-			clean_command(command[0]);
 			command_path = search_path(command[0]);
 			if (command_path != NULL)
 			{
@@ -56,13 +68,7 @@ int simple_shell(void)
 				_printf("%s: command not found\n", command[0]);
 		}
 /*4 - free memory alloc*/
-		i = 0;
-		while (command[i++] != NULL)
-		{
-			free(command[i]);
-		}
-		free(command);
-		free(line);
+		clean_command(command);
 	}
 	return (0);
 }
