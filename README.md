@@ -1,6 +1,6 @@
 # 0x16. C - Simple Shell
 
-## This repo is a reproducing shell functions, it contains:
+### This repo is a reproducing shell functions, it contains:
 
 - shell.h - headerfile for the shell functions
 - str_func.h - headerfile for the string functions
@@ -21,7 +21,7 @@ strsplit.c
 custom_conversion.c    strcat.c    strstr.c
 env_functions.c    strcpy.c
 
-## This project is a group project for Holberton School
+### This project is a group project for Holberton School
 
 Resources
 
