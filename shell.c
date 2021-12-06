@@ -36,7 +36,7 @@ int simple_shell(void)
 		if (line[0] == '\n')
 			continue;
 		clean_line(line);
-		_strsplit(line, ' ', command);
+		command = _strsplit(line, ' ', command);
 		printf("ptr=%p\n",(void *) command);
 		for (i = 0; command[i] != NULL; i++)
 			_printf("-%s\n", command[i]);
@@ -63,7 +63,7 @@ int simple_shell(void)
 				_printf("%s: command not found\n", command[0]);
 		}
 /*4 - free memory alloc*/
-		/*clean_dptr(command);*/
+		free_dptr(command);
 	}
 	return (0);
 }

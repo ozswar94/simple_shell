@@ -24,7 +24,7 @@ unsigned int _strlen(char *s)
 * Return: a pointer to an array of strings (words)
 */
 
-void _strsplit(char *str, int c, char **tab_word)
+char **_strsplit(char *str, int c, char **tab_word)
 {
 	unsigned int i, j, k;
 	unsigned int word = 0;
@@ -33,11 +33,11 @@ void _strsplit(char *str, int c, char **tab_word)
 		if (str[i] == c)
 			word++;
 	if (str == NULL || _strlen(str) == 0 || i == word)
-		return;
+		return (NULL);
 	tab_word = malloc(sizeof(char *) * (word + 1));
 	printf("ptr=%p\n", (void *)tab_word);
 	if (tab_word == NULL)
-		return;
+		return (NULL);
 	k = 0;
 	i = 0;
 	while (str[i] != '\0')
@@ -56,8 +56,7 @@ void _strsplit(char *str, int c, char **tab_word)
 			for (j = 0; j < k; j++)
 				free(tab_word[j]);
 			free(tab_word);
-			tab_word = NULL;
-			return;
+			return (NULL);
 		}
 		for (j = 0; str[i + j] && str[i + j] != c; j++)
 			tab_word[k][j] = str[i + j];
@@ -70,6 +69,7 @@ void _strsplit(char *str, int c, char **tab_word)
 	printf("ptr=%p\n", (void *)tab_word);
 	for (i = 0; tab_word[i] != NULL; i++)
 		_printf("%s\n", tab_word[i]);
+	return (tab_word);
 }
 
 void free_dptr(char **ptr)
@@ -78,8 +78,11 @@ void free_dptr(char **ptr)
 
 	i = 0;
 	_printf("TEST 6\n");
+	printf("$ptr=%p\n", (void *)ptr);
 	while (ptr[i] != NULL)
 	{
+		printf("$ptr=%p\n", (void *)ptr[i]);
+		printf("ptr[%d]= %s\n", i, ptr[i]);
 		free(ptr[i]);
 		_printf("%d\n", i);
 		i++;
