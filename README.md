@@ -1,6 +1,6 @@
-0x16. C - Simple Shell
+# 0x16. C - Simple Shell
 
-This repo is a reproducing shell functions, it contains:
+## This repo is a reproducing shell functions, it contains:
 
 - shell.h - headerfile for the shell functions
 - str_func.h - headerfile for the string functions
@@ -21,7 +21,7 @@ strsplit.c
 custom_conversion.c    strcat.c    strstr.c
 env_functions.c    strcpy.c
 
-This project is a group project for Holberton School
+## This project is a group project for Holberton School
 
 Resources
 
@@ -29,7 +29,7 @@ Resources
     Thompson shell
     man page of sh
 
-List of allowed functions and system calls
+### List of allowed functions and system calls
 
 - access (man 2 access)
 - chdir (man 2 chdir)
@@ -63,13 +63,14 @@ List of allowed functions and system calls
 - wait4 (man 2 wait4)
 - write (man 2 write)
 
-Compilation
-Your shell will be compiled this way:
+### Compilation
+
+#### Your shell will be compiled this way:
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
-Testing
-This shell should work like this in interactive mode:
+## Testing
+#### This shell should work like this in interactive mode:
 
 (example)
 $ ./hsh
@@ -79,7 +80,7 @@ hsh main.c shell.c
 ($) exit
 $
 
-But also in non-interactive mode:
+#### But also in non-interactive mode:
 
 (example)
 $ echo "/bin/ls" | ./hsh
@@ -94,8 +95,8 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
 
-Project made by:
+## Project made by:
 
-Anna78990 - https://github.com/Anna78990
-NeoV0id   - https://github.com/NeoV0id
-ozswar94 - https://github.com/ozswar94
+- Anna78990 - https://github.com/Anna78990
+- NeoV0id   - https://github.com/NeoV0id
+- ozswar94 - https://github.com/ozswar94
