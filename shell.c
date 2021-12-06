@@ -13,18 +13,6 @@ void clean_line(char *command)
 		command[_strlen(command) - 1] = '\0';	
 }
 
-/*free command*/
-void clean_command(char **command)
-{
-	int i;
-
-	for (i = 0; command[i] != NULL; i++)
-	{
-		free(command[i]);
-	}
-	free(command);
-}
-
 int simple_shell(void)
 {
 	char *line = NULL;
@@ -67,7 +55,7 @@ int simple_shell(void)
 				_printf("%s: command not found\n", command[0]);
 		}
 /*4 - free memory alloc*/
-		clean_command(command);
+		/*clean_dptr(command);*/
 	}
 	return (0);
 }

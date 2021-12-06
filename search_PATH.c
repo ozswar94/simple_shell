@@ -28,21 +28,12 @@ char *search_path(char *command)
 
 		if (stat(command_path, &buf) == 0)
 		{
-			for (; i >= 0; i--)
-			{
-				free(path_directory[i]);
-			}
-			free(path_directory);
+			free_dptr(path_directory);
 			return (command_path);
 		}
-
 		free(command_path);
 		i++;
 	}
-	for (; i >= 0; i--)
-	{
-		free(path_directory[i]);
-	}
-	free(path_directory);
+	free_dptr(path_directory);
 	return (NULL);
 }

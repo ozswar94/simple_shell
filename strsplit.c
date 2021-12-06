@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "str_func.h"
-
+#include "printf.h"
 /**
 * _strlen - determine se sizeof ol string
 * @s: string
@@ -65,4 +65,14 @@ char **_strsplit(char *str, int c)
 	}
 	tab_word[k] = NULL;
 	return (tab_word);
+}
+
+void free_dptr(char **ptr)
+{
+	int i;
+
+	i = 0;
+	while (ptr[i++] != NULL)
+		free(ptr[i]);
+	free(ptr);
 }
