@@ -24,23 +24,23 @@ unsigned int _strlen(char *s)
 * Return: a pointer to an array of strings (words)
 */
 
-char **_strsplit(char *str, int c, char **tab_word)
+char **_strsplit(char *str, int c)
 {
 	unsigned int i, j, k;
 	unsigned int word = 0;
+	char **tab_word;
 
 	for (i = 0; str[i] != '\0'; i++)
 		if (str[i] == c)
 			word++;
 	if (str == NULL || _strlen(str) == 0 || i == word)
 		return (NULL);
-	tab_word = malloc(sizeof(char *) * (word + 1));
-	printf("ptr=%p\n", (void *)tab_word);
+	tab_word = malloc(sizeof(char *) * (word + 3));
 	if (tab_word == NULL)
 		return (NULL);
 	k = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		j = 0;
 		while (str[i + j] && str[i + j] != c)
@@ -50,7 +50,7 @@ char **_strsplit(char *str, int c, char **tab_word)
 			i++;
 			continue;
 		}
-		tab_word[k] = malloc(sizeof(char) * (j + 1));
+		tab_word[k] = malloc(sizeof(char) * (j + 3));
 		if (tab_word[k] == NULL)
 		{
 			for (j = 0; j < k; j++)
@@ -59,34 +59,11 @@ char **_strsplit(char *str, int c, char **tab_word)
 			return (NULL);
 		}
 		for (j = 0; str[i + j] && str[i + j] != c; j++)
-			tab_word[k][j] = str[i + j];
-		tab_word[k][j] = '\0';
-		_printf("-%s\n", tab_word[k]);
+			;
+		_strncpy(*(tab_word + k), (str + i), j);
 		k++;
 		i += j;
 	}
 	tab_word[k] = NULL;
-	printf("ptr=%p\n", (void *)tab_word);
-	for (i = 0; tab_word[i] != NULL; i++)
-		_printf("%s\n", tab_word[i]);
 	return (tab_word);
-}
-
-void free_dptr(char **ptr)
-{
-	int i;
-
-	i = 0;
-	_printf("TEST 6\n");
-	printf("$ptr=%p\n", (void *)ptr);
-	while (ptr[i] != NULL)
-	{
-		printf("$ptr=%p\n", (void *)ptr[i]);
-		printf("ptr[%d]= %s\n", i, ptr[i]);
-		free(ptr[i]);
-		_printf("%d\n", i);
-		i++;
-	}
-	_printf("TEST 7\n");
-	free(ptr);
 }

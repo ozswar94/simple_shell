@@ -10,12 +10,11 @@
 void clean_line(char *command)
 {
 	if (command[_strlen(command) - 1] == '\n')
-		command[_strlen(command) - 1] = '\0';	
+		command[_strlen(command) - 1] = '\0';
 }
 
 int simple_shell(void)
 {
-	int i;
 	char *line = NULL;
 	char *command_path = NULL;
 	char **command = NULL;
@@ -23,7 +22,6 @@ int simple_shell(void)
 
 	while (1)
 	{
-/*1 - print prompt and read line*/
 		_printf("$ ");
 		fflush(stdout);
 		if (getline(&line, &len_line, stdin) == EOF)
@@ -33,38 +31,40 @@ int simple_shell(void)
 			return (1);
 		}
 		fflush(stdin);
-		if (line[0] == '\n')
-			continue;
 		clean_line(line);
-		command = _strsplit(line, ' ', command);
-		printf("ptr=%p\n",(void *) command);
-		for (i = 0; command[i] != NULL; i++)
-			_printf("-%s\n", command[i]);
-
+		command = _strsplit(line, ' ');
 		if (command == NULL)
 			continue;
-		_printf("TEST 1\n");
-/*
-* 2 - check if the command is in built-in,
-* if is not a bultin check if the command is in PATH
-*/
+
 		if (check_built_in(command[0]) == 0)
 		{
-/*3 - run the command in a new processus and wait the parent processus*/
-			_printf("TEST 2\n");
 			command_path = search_path(command[0]);
-			_printf("TEST 3\n");
 			if (command_path != NULL)
-			{
-				_printf("%s: command found\n", command[0]);
-				free(command_path);
-			}
+				run_command(command_path, command);
 			else
 				_printf("%s: command not found\n", command[0]);
 		}
-/*4 - free memory alloc*/
 		free_dptr(command);
 	}
 	return (0);
 }
 
+void run_command(char *command_path, char **command)
+{
+	pid_t child;
+	int status;
+
+	child = fork();
+	if (child == 0)
+	{
+		if (execve(command_path, command, NULL) == -1)
+		{
+			_printf("Error: command\n");
+		}
+	}
+	else
+	{
+		wait(&status);
+		free(command_path);
+	}
+}
