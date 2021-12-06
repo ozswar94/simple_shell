@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "str_func.h"
 
 /**

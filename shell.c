@@ -5,47 +5,66 @@
 #include <sys/wait.h>
 #include <string.h>
 #include "shell.h"
-#include "str_func.h"
-#include "printf.h"
+
+/*Remove new line*/
+void clean_line(char *command)
+{
+	if (command[_strlen(command) - 1] == '\n')
+		command[_strlen(command) - 1] = '\0';
+}
 
 int simple_shell(void)
 {
 	char *line = NULL;
+	char *command_path = NULL;
 	char **command = NULL;
 	size_t len_line = 0;
-	int i, status_pid;
 
 	while (1)
 	{
-		/*1 - print prompt and read line*/
-		if (prompt(line, len_line) == -1)
+		_printf("$ ");
+		fflush(stdout);
+		if (getline(&line, &len_line, stdin) == EOF)
 		{
-			_putchar('\n');
 			free(line);
-			break;
+			_putchar('\n');
+			return (1);
 		}
-		if (line == NULL)
+		fflush(stdin);
+		clean_line(line);
+		command = _strsplit(line, ' ');
+		if (command == NULL)
 			continue;
-		/*2 - check if the command is in built-in, if is not a bultin check if the command is in PATH*/
-		
 
-		/*3 - run the command in a new processus and wait the parent processus*/
-
-
-		/*4 - free memory alloc*/
-		i = 0;
-		if (command != NULL)
+		if (check_built_in(command[0]) == 0)
 		{
-			while (command[i] != NULL)
-			{
-				free(command[i]);
-				i++;
-			}
-			free(command);
+			command_path = search_path(command[0]);
+			if (command_path != NULL)
+				run_command(command_path, command);
+			else
+				_printf("%s: command not found\n", command[0]);
 		}
-		free(line);
-		command = NULL;
-		line = NULL;
+		free_dptr(command);
 	}
 	return (0);
+}
+
+void run_command(char *command_path, char **command)
+{
+	pid_t child;
+	int status;
+
+	child = fork();
+	if (child == 0)
+	{
+		if (execve(command_path, command, NULL) == -1)
+		{
+			_printf("Error: command\n");
+		}
+	}
+	else
+	{
+		wait(&status);
+		free(command_path);
+	}
 }
