@@ -15,9 +15,10 @@ void clean_line(char *command)
 
 int simple_shell(void)
 {
+	int i;
 	char *line = NULL;
-	char *command_path;
-	char **command;
+	char *command_path = NULL;
+	char **command = NULL;
 	size_t len_line = 0;
 
 	while (1)
@@ -35,9 +36,14 @@ int simple_shell(void)
 		if (line[0] == '\n')
 			continue;
 		clean_line(line);
-		command = _strsplit(line, ' ');
+		_strsplit(line, ' ', command);
+		printf("ptr=%p\n",(void *) command);
+		for (i = 0; command[i] != NULL; i++)
+			_printf("-%s\n", command[i]);
+
 		if (command == NULL)
 			continue;
+		_printf("TEST 1\n");
 /*
 * 2 - check if the command is in built-in,
 * if is not a bultin check if the command is in PATH
@@ -45,7 +51,9 @@ int simple_shell(void)
 		if (check_built_in(command[0]) == 0)
 		{
 /*3 - run the command in a new processus and wait the parent processus*/
+			_printf("TEST 2\n");
 			command_path = search_path(command[0]);
+			_printf("TEST 3\n");
 			if (command_path != NULL)
 			{
 				_printf("%s: command found\n", command[0]);
