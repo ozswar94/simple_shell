@@ -70,7 +70,7 @@ int simple_shell(char *name)
 			if (command_path != NULL)
 				run_command(command_path, command);
 			else
-				_printf("%s: %d: %s: command not found\n", name, counter, command[0]);
+				_printf("%s: %d: %s: not found\n", name, counter, command[0]);
 		}
 		free_dptr(command);
 		counter++;
