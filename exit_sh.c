@@ -1,32 +1,28 @@
-#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include "format.h"
-#include "printf.h"
 #include "shell.h"
-#include "str_func.c"
+
 
 /**
- * exit_sh - exit the shell
- * @status: 0 is success, 1 is an error
- */
-
-void exit_sh(int status, char *line)
+* exit_sh - exit simple shell
+* @command: command
+* @line: llne of command
+* @counter: counter of simple shell
+* @name: name of program
+*/
+void exit_sh(char **command, char *line, int counter, char *name)
 {
-	size_t size = 1024;
-
-	char *buf;
-	char *exit = "exit";
-
-	if (status == 0)
+	int status = 0;
+	(void)name;
+	status = _atoi(command[1]);
+	if (status != 0)
 	{
 		free(line);
-		if(line == exit)
-			exit(status);
+		free_dptr(command);
+		exit(status);
 	}
-	
 	else
-		exit (status);
-
+	{
+		_printf("%s: %d: exit: Illegal nunber: %s\n", name, counter, command[1]);
+	}
 }
 

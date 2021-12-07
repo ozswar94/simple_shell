@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "str_func.h"
-#include "printf.h"
+
 /**
-* _strlen - determine se sizeof ol string
+* _strlen - determine sizeof ol string
 * @s: string
 * Return: the size of s
 */
@@ -18,10 +18,11 @@ unsigned int _strlen(char *s)
 }
 
 /**
-* strtow - Each element of this array should contain
-* a single word, null-terminated
+* _strsplit - split string in tab_word
 * @str: string
-* Return: a pointer to an array of strings (words)
+* @c: word delimiter
+*
+* Return: tab of word or NULL
 */
 
 char **_strsplit(char *str, int c)
@@ -50,7 +51,7 @@ char **_strsplit(char *str, int c)
 			i++;
 			continue;
 		}
-		tab_word[k] = malloc(sizeof(char) * (j + 3));
+		tab_word[k] = malloc(sizeof(char) * _strlen(str));
 		if (tab_word[k] == NULL)
 		{
 			for (j = 0; j < k; j++)

@@ -1,6 +1,12 @@
 #ifndef STR_FUNC_H
 #define STR_FUNC_H
 
+int _atoi(const char *str);
+int _isdigit(int c);
+int _isalpha(int c);
+int ft_atoi(const char *str);
+char *_strdup(char *str);
+char *_strchr(char *s, char c);
 char *_strstr(char *haystack, char *needle);
 unsigned int _strlen(char *s);
 char *_strcpy(char *dest, char *src);

@@ -1,10 +1,22 @@
 #include <stdlib.h>
 #include "shell.h"
 
-void print_env(void)
+
+/**
+* print_env - print environ varaible
+* @command: command
+* @line: llne of command
+* @counter: counter of simple shell
+* @name: name of program
+*/
+void print_env(char **command, char *line, int counter, char *name)
 {
 	int i = 0;
 
+	(void)line;
+	(void)command;
+	(void)counter;
+	(void)name;
 	while (environ[i] != NULL)
 	{
 		_printf("%s\n", environ[i]);
@@ -12,6 +24,12 @@ void print_env(void)
 	}
 }
 
+
+/**
+* _getenv - content of name env
+* @name: variable env
+* Return: content of variable env or NULL
+*/
 char *_getenv(char *name)
 {
 	int i = 0;

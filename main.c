@@ -1,8 +1,19 @@
 #include "shell.h"
 
-int main(void)
-{
-	simple_shell();
+/**
+* main - main function which run simple_shell
+* @argc: number of argument
+* @argv: name of program + argument
+*
+* Return: status
+*/
 
-	return (0);
+int main(int argc, char **argv)
+{
+	int status;
+
+	(void)argc;
+	status = simple_shell(argv[0]);
+
+	return (status);
 }

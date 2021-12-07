@@ -6,19 +6,46 @@
 #include <string.h>
 #include "shell.h"
 
-/*Remove new line*/
-void clean_line(char *command)
+
+/**
+* clean_newline - remove char newline in line
+* @line: line of command
+*
+*/
+void clean_newline(char *line)
 {
-	if (command[_strlen(command) - 1] == '\n')
-		command[_strlen(command) - 1] = '\0';
+	if (line[_strlen(line) - 1] == '\n')
+		line[_strlen(line) - 1] = '\0';
 }
 
-int simple_shell(void)
+
+/**
+* clean_tab - replace char tabulation to space
+* @line: line of command
+*
+*/
+void clean_tab(char *line)
+{
+	unsigned int i;
+
+	for (i = 0; line[i] != '\0'; i++)
+		if (line[i] == '\t')
+			line[i] = ' ';
+}
+
+
+/**
+* simple_shell - main function for run simple_shell
+* @name: name of programme
+* Return: 2 if EOF, 0 Normaly
+*/
+int simple_shell(char *name)
 {
 	char *line = NULL;
 	char *command_path = NULL;
 	char **command = NULL;
 	size_t len_line = 0;
+	int counter = 1;
 
 	while (1)
 	{
@@ -28,27 +55,36 @@ int simple_shell(void)
 		{
 			free(line);
 			_putchar('\n');
-			return (1);
+			return (2);
 		}
 		fflush(stdin);
-		clean_line(line);
+		clean_newline(line);
+		clean_tab(line);
 		command = _strsplit(line, ' ');
 		if (command == NULL)
 			continue;
 
-		if (check_built_in(command[0]) == 0)
+		if (check_built_in(command, line, counter, name) == 0)
 		{
 			command_path = search_path(command[0]);
 			if (command_path != NULL)
 				run_command(command_path, command);
 			else
-				_printf("%s: command not found\n", command[0]);
+				_printf("%s: %d: %s: command not found\n", name, counter, command[0]);
 		}
 		free_dptr(command);
+		counter++;
 	}
 	return (0);
 }
 
+
+/**
+* run_command - run command in new processus
+* @command_path: absolute path of file
+* @command: the line with argument
+*
+*/
 void run_command(char *command_path, char **command)
 {
 	pid_t child;
