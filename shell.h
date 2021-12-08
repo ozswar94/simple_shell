@@ -17,6 +17,7 @@ typedef struct built_in_s
 
 extern char **environ;
 
+void prompt(void);
 void exit_sh(char **command, char *line, int counter, char *name);
 int simple_shell(char *name);
 void print_env(char **command, char *line, int counter, char *name);

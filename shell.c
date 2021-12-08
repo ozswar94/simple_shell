@@ -49,15 +49,13 @@ int simple_shell(char *name)
 
 	while (1)
 	{
-		_printf("$ ");
-		fflush(stdout);
+		prompt();
 		if (getline(&line, &len_line, stdin) == EOF)
 		{
 			free(line);
 			_putchar('\n');
 			return (2);
 		}
-		fflush(stdin);
 		clean_newline(line);
 		clean_tab(line);
 		command = _strsplit(line, ' ');
