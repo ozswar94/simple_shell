@@ -33,12 +33,25 @@ void print_env(char **command, char *line, int counter, char *name)
 char *_getenv(char *name)
 {
 	int i = 0;
+	unsigned int j;
+	unsigned int k;
 
-	while (environ[i] != NULL && _strstr(environ[i], name) == NULL)
-		i++;
-	if (environ[i] != NULL)
+	while (environ[i] != NULL)
 	{
-		return (_strstr(environ[i], name) + _strlen(name) + 1);
+		if (_strstr(environ[i], name))
+		{
+			j = 0;
+			k = 0;
+			while (name[j])
+			{
+				if (environ[i][j] == name[j])
+					k++;
+				j++;
+			}
+			if (k == _strlen(name))
+			return (_strstr(environ[i], name) + _strlen(name) + 1);
+		}
+		i++;
 	}
 	return (NULL);
 }

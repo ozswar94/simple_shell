@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include "shell.h"
+#include "printf.h"
 
 /**
 * free_dptr - free a pointer to pointer
@@ -45,7 +46,7 @@ char *search_path(char *command)
 		return (NULL);
 	}
 
-	path_directory = _strsplit(_getenv("PATH"), ':');
+	path_directory = _strsplit(_getenv("PATH="), ':');
 	if (path_directory == NULL)
 		return (NULL);
 

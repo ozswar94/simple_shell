@@ -51,7 +51,7 @@ char **_strsplit(char *str, int c)
 			i++;
 			continue;
 		}
-		tab_word[k] = malloc(sizeof(char) * _strlen(str));
+		tab_word[k] = malloc(sizeof(char) * _strlen(str) + 1);
 		if (tab_word[k] == NULL)
 		{
 			for (j = 0; j < k; j++)
