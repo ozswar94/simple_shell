@@ -1,6 +1,8 @@
 #ifndef STR_FUNC_H
 #define STR_FUNC_H
 
+
+int	my_getnbr(char *str);
 int _atoi(const char *str);
 int _isdigit(int c);
 int _isalpha(int c);

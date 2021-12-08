@@ -1,3 +1,4 @@
+#include "str_func.h"
 
 int	my_getnbr(char *str)
 {
