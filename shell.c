@@ -63,7 +63,7 @@ int simple_shell(char *name)
 			else
 			{
 				_printf("%s: %d: %s: not found\n", name, counter, command[0]);
-				error_command = 2;
+				error_command = 127;
 			}
 		}
 		free_dptr(command);

@@ -9,6 +9,8 @@
 
 void prompt(void)
 {
+	fflush(stdin);
+	fflush(stdout);
 	if (isatty(STDIN_FILENO))
 		_printf("$ ");
 }
