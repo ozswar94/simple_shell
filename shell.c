@@ -58,8 +58,6 @@ int simple_shell(char *name)
 		if (check_built_in(command, line, counter, name) == 0)
 		{
 			command_path = search_path(command[0]);
-			_printf("-%s\n", command_path);
-			_printf("-%s\n", line);
 			if (command_path != NULL)
 				run_command(command_path, command);
 			else
