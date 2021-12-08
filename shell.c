@@ -40,6 +40,7 @@ int simple_shell(char *name)
 	char **command = NULL;
 	size_t len_line = 0;
 	int counter = 1;
+	int error_command = 0;
 
 	while (1)
 	{
@@ -47,8 +48,7 @@ int simple_shell(char *name)
 		if (getline(&line, &len_line, stdin) == EOF)
 		{
 			free(line);
-			_putchar('\n');
-			return (2);
+			return (error_command);
 		}
 		clean_line(line);
 		command = _strsplit(line, ' ');
@@ -61,7 +61,10 @@ int simple_shell(char *name)
 			if (command_path != NULL)
 				run_command(command_path, command);
 			else
+			{
 				_printf("%s: %d: %s: not found\n", name, counter, command[0]);
+				error_command = 2;
+			}
 		}
 		free_dptr(command);
 		counter++;
@@ -86,7 +89,7 @@ void run_command(char *command_path, char **command)
 	{
 		if (execve(command_path, command, NULL) == -1)
 		{
-			_printf("Error: command\n");
+			exit(2);
 		}
 	}
 	else

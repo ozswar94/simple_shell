@@ -38,7 +38,7 @@ char *search_path(char *command)
 	if (_strchr(command, '/') != NULL)
 	{
 		command_path = _strdup(command);
-		if (path_directory == NULL)
+		if (command_path == NULL)
 			return (NULL);
 
 		if (stat(command_path, &buf) == 0)

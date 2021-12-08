@@ -49,7 +49,7 @@ char *_getenv(char *name)
 				j++;
 			}
 			if (k == _strlen(name))
-			return (_strstr(environ[i], name) + _strlen(name));
+			return (_strstr(environ[i], name) + _strlen(name) );
 		}
 		i++;
 	}
