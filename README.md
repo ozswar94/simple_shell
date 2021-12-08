@@ -7,6 +7,10 @@
 - printf.h - headerfile for a printf function
 - format.h - headerfile for the formats of the printf function
 
+- comp_shell - file to execute
+
+- man_simple_shell - manual file for simple shell
+
 - main.c - main programe
 - printf.c - main function of printf
 - function.c - the functions, which print char, stirng, int, adress of pointer.(for printf)
@@ -15,11 +19,28 @@
 - print_number.c - the functions, which print numbers and pointer address, are made up of functions in this file.
 (for printf)
 - print_convert.c - prints binary, hexadeximal, ocatal number, and unsigned intnumber(for ptintf)
+- convert_number - convert numbers to binary, octal, hexadecimal.(for printf)
+- custom_conversion.c - print string in reverse, crypt a string in rot13, print value of not printable char
 - shell.c - read the command typed to standard, and check if its built-in command or not
 - prompt.c - read lines(for shell)
-strsplit.c
-custom_conversion.c    strcat.c    strstr.c
-env_functions.c    strcpy.c
+- strsplit.c - split the line(for shell)
+- strcat.c - concataine 2 strings(for shell)
+- strstr.c - search a particulary string in the specified string(for shell)
+- strdup.c - duplicate string(for shell)
+- strcpy.c - copy string(for shell)
+- strncmp - compare two strinhgs(for shell)
+- strchr - search the characters in string(for shell)
+- strncpy - copy the characters of the specified number(for shell)
+- env_functions.c - print environ, get the value in environ(for shell)
+- strcpy.c - copy string(for shell)
+- exit_sh.c - exit this shell(for shell)
+- atoi.c - convert the string to the number(for shell)
+- isalpha.c - check if its alphabet or not(for shell)
+- isdigit - isalpha.c - check if its number or not(for shell)
+- realloc.c - add allocated memory(for shell)
+- built_in.c - check if it is built-in command or not(for shell)
+- search_PATH.c - search in PATH environment variable(for shell)
+
 
 ### This project is a group project for Holberton School
 
