@@ -8,25 +8,18 @@
 
 
 /**
-* clean_newline - remove char newline in line
+* clean_line - remove char newline in line and replace \t to space
 * @line: line of command
 *
 */
-void clean_newline(char *line)
-{
-	if (line[_strlen(line) - 1] == '\n')
-		line[_strlen(line) - 1] = '\0';
-}
-
-
-/**
-* clean_tab - replace char tabulation to space
-* @line: line of command
-*
-*/
-void clean_tab(char *line)
+void clean_line(char *line)
 {
 	unsigned int i;
+	unsigned int size;
+
+	size = _strlen(line) - 1;
+	if (line[size] == '\n')
+		line[size] = '\0';
 
 	for (i = 0; line[i] != '\0'; i++)
 		if (line[i] == '\t')
@@ -37,6 +30,7 @@ void clean_tab(char *line)
 /**
 * simple_shell - main function for run simple_shell
 * @name: name of programme
+*
 * Return: 2 if EOF, 0 Normaly
 */
 int simple_shell(char *name)
@@ -56,8 +50,7 @@ int simple_shell(char *name)
 			_putchar('\n');
 			return (2);
 		}
-		clean_newline(line);
-		clean_tab(line);
+		clean_line(line);
 		command = _strsplit(line, ' ');
 		if (command == NULL)
 			continue;
