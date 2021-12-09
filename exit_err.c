@@ -7,10 +7,11 @@
  * @name: name of file
  * @command: command with the error
  * @counter: number of time the loop was made
+ * Return: Error code
  */
 
 
-void error_exit(char *name, char **command, int counter)
+int error_exit(char *name, char **command, int counter)
 {
 	char *c;
 
@@ -25,5 +26,6 @@ void error_exit(char *name, char **command, int counter)
 		write(STDERR_FILENO, "\n", 1);
 		free(c);
 	}
+	return (2);
 }
 

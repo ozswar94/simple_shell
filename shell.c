@@ -4,8 +4,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <errno.h>
 #include "shell.h"
 #include "error.h"
+
 
 
 /**
@@ -60,11 +62,13 @@ int simple_shell(char *name)
 		{
 			command_path = search_path(command[0]);
 			if (command_path != NULL)
+			{
 				run_command(command_path, command);
+			}
 			else
 			{
 				not_found(name, command, counter);
-				error_command = 127;
+				error_command = 2;
 			}
 		}
 		free_dptr(command);
@@ -88,14 +92,17 @@ void run_command(char *command_path, char **command)
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(command_path, command, NULL) == -1)
+		if (execve(command_path, command, NULL) == (-1))
 		{
 			perror("Error:");
+			exit(EXIT_FAILURE);
 		}
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
 		wait(&status);
 		free(command_path);
 	}
+
 }

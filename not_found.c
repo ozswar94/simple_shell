@@ -10,9 +10,10 @@
  * @name: name of file
  * @command: command with the error
  * @counter: number of time the loop was made
+ * Return: Error code
  */
 
-void not_found(char *name, char **command, int counter)
+int not_found(char *name, char **command, int counter)
 {
 	char *c;
 
@@ -28,5 +29,6 @@ void not_found(char *name, char **command, int counter)
 		write(STDERR_FILENO, "\n", 1);
 		free(c);
 	}
+	return (2);
 }
 

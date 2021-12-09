@@ -1,7 +1,7 @@
 #ifndef ERROR_H
 #define ERROR_H
 
-void error_exit(char *name, char **command, int counter);
-void not_found(char *name, char **command, int counter);
+int error_exit(char *name, char **command, int counter);
+int not_found(char *name, char **command, int counter);
 
 #endif
