@@ -90,7 +90,7 @@ void run_command(char *command_path, char **command)
 	{
 		if (execve(command_path, command, NULL) == -1)
 		{
-			exit(2);
+			perror("Error:");
 		}
 	}
 	else
