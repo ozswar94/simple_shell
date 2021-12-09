@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include "shell.h"
+#include "error.h"
 
 
 /**
@@ -62,7 +63,7 @@ int simple_shell(char *name)
 				run_command(command_path, command);
 			else
 			{
-				_printf("%s: %d: %s: not found\n", name, counter, command[0]);
+				not_found(name, command, counter);
 				error_command = 127;
 			}
 		}

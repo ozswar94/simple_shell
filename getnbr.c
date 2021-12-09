@@ -1,35 +1,41 @@
+#include <stdlib.h>
 #include "str_func.h"
 
 /**
- * my_getnbr - print numbers (as char)
- * @str: number to print
+ * _getnbr - print numbers (as char)
+ * @nb: number to print
  *
  * Return: str as int
  */
 
-int my_getnbr(char *str)
+char *_getnbr(int nb)
 {
-	int number;
+	char *str;
 	int i;
 	int n;
 
+	str = malloc(sizeof(char) * 20);
+	if (str == NULL)
+		return (NULL);
+
 	i = 0;
-	number = 0;
-	n = 1;
-
-	while (str[i] == '-' || str[i] == '+')
+	if (nb < 0)
 	{
-		if (str[i] == '-')
-		n = -1 * n;
+		str[i] = '-';
 		i++;
+		nb *= -1;
 	}
+	for (n = 1; n <= nb / 10; n *= 10)
+		;
 
-	while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9'))
+	while (n > 0)
 	{
-		number = (number * 10) + (str[i] - '0');
-		i += 1;
+		str[i] = (nb / n) + '0';
+		i++;
+		nb %= n;
+		n /= 10;
 	}
-
-	return (number * n);
+	str[i] = '\0';
+	return (str);
 }
 

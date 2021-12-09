@@ -22,7 +22,7 @@ int _atoi(const char *str)
 	while (str[i + 1])
 	{
 		if (_isalpha(str[i]) == 1)
-			return (0);
+			return (-1);
 		unit *= 10;
 		i++;
 	}

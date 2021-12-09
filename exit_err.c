@@ -1,7 +1,4 @@
-#include <errno.h>
-#include <stdio.h>
 #include "printf.h"
-#include <string.h>
 #include <unistd.h>
 #include "str_func.h"
 
@@ -12,13 +9,21 @@
  * @counter: number of time the loop was made
  */
 
-void error_exit(char *name, char **command, __attribute__((unused))int counter)
-{
 
-	write(STDERR_FILENO, name, strlen(name));
-	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, " exit: Illegal number: ", 24);
-	write(STDERR_FILENO, command[0], strlen(command[0]));
-	write(STDERR_FILENO, "\n", 1);
+void error_exit(char *name, char **command, int counter)
+{
+	char *c;
+
+	if (isatty(STDERR_FILENO))
+	{
+		c = _getnbr(counter);
+		write(STDERR_FILENO, name, _strlen(name));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, c, _strlen(c));
+		write(STDERR_FILENO, ": exit: Illegal number: ", 24);
+		write(STDERR_FILENO, command[1], _strlen(command[1]));
+		write(STDERR_FILENO, "\n", 1);
+		free(c);
+	}
 }
 

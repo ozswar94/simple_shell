@@ -12,14 +12,21 @@
  * @counter: number of time the loop was made
  */
 
-void not_found(char *name, char **command, __attribute__((unused))int counter)
+void not_found(char *name, char **command, int counter)
 {
+	char *c;
 
-	write(STDERR_FILENO, name, strlen(name));
-	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, command[0], strlen(command[0]));
-	write(STDERR_FILENO, ": not found", 12);
-	write(STDERR_FILENO, "\n", 1);
-
+	if (isatty(STDERR_FILENO))
+	{
+		c = _getnbr(counter);
+		write(STDERR_FILENO, name, strlen(name));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, c, _strlen(c));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, command[0], strlen(command[0]));
+		write(STDERR_FILENO, ": not found", 12);
+		write(STDERR_FILENO, "\n", 1);
+		free(c);
+	}
 }
 

@@ -1,5 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "shell.h"
+#include "error.h"
 
 
 /**
@@ -14,7 +16,7 @@ void exit_sh(char **command, char *line, int counter, char *name)
 	int status = 0;
 
 	status = _atoi(command[1]);
-	if (status != 0 || command[1] == NULL)
+	if (status >= 0 || command[1] == NULL)
 	{
 		free(line);
 		free_dptr(command);
@@ -22,7 +24,6 @@ void exit_sh(char **command, char *line, int counter, char *name)
 	}
 	else
 	{
-		_printf("%s: %d: exit: Illegal nunber: %s\n", name, counter, command[1]);
+		error_exit(name, command, counter);
 	}
 }
-

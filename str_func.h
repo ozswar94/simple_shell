@@ -2,7 +2,7 @@
 #define STR_FUNC_H
 
 
-int	my_getnbr(char *str);
+char *_getnbr(int nb);
 int _atoi(const char *str);
 int _isdigit(int c);
 int _isalpha(int c);
