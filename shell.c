@@ -74,6 +74,7 @@ int simple_shell(char *name)
 			if (command_path != NULL)
 			{
 				run_command(command_path, command, environ);
+				error_command = 0;
 			}
 			else
 			{

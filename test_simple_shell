@@ -11,8 +11,12 @@ echo ---------
 echo $?
 echo /bin/ls |sh
 echo ---------
+echo $?
 echo /bin/ls |./hsh
+echo $?
 echo ---------
-echo /bin/bin/ls |./hsh
+echo "/bin/ls hbk"|./hsh
+echo $?
 echo ---------
-echo /bin/bin/ls |./sh
+echo "/bin/ls hbk"|sh
+echo $?
