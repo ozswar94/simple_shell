@@ -25,6 +25,6 @@ char *_getenv(char *name);
 int check_built_in(char **command, char *line, int counter, char *name);
 char *search_path(char *command);
 void free_dptr(char **ptr);
-void run_command(char *command_path, char **command);
+void run_command(char *command_path, char **command, char **env);
 
 #endif /*SHELL_*/

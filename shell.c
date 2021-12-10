@@ -73,7 +73,7 @@ int simple_shell(char *name)
 			command_path = search_path(command[0]);
 			if (command_path != NULL)
 			{
-				run_command(command_path, command);
+				run_command(command_path, command, environ);
 			}
 			else
 			{
@@ -94,7 +94,7 @@ int simple_shell(char *name)
 * @command: the line with argument
 *
 */
-void run_command(char *command_path, char **command)
+void run_command(char *command_path, char **command, char **env)
 {
 	pid_t child;
 	int status;
@@ -102,7 +102,7 @@ void run_command(char *command_path, char **command)
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(command_path, command, NULL) == (-1))
+		if (execve(command_path, command, env) == (-1))
 		{
 			perror("Error:");
 			exit(2);
