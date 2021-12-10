@@ -8,8 +8,9 @@
 * @line: llne of command
 * @counter: counter of simple shell
 * @name: name of program
+* Return: 0 if success
 */
-void print_env(char **command, char *line, int counter, char *name)
+int print_env(char **command, char *line, int counter, char *name)
 {
 	int i = 0;
 
@@ -22,6 +23,7 @@ void print_env(char **command, char *line, int counter, char *name)
 		_printf("%s\n", environ[i]);
 		i++;
 	}
+	return (0);
 }
 
 

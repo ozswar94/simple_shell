@@ -8,7 +8,7 @@
 * @counter: counter of while
 * @name: name of program
 *
-* Return: 1 if the command is a built-in else 0 not a built-in
+* Return: 1 if the command is a built-in else -1 not a built-in
 */
 int check_built_in(char **command, char *line, int counter, char *name)
 {
@@ -23,11 +23,10 @@ int check_built_in(char **command, char *line, int counter, char *name)
 	{
 		if (_strcmp(command_built_in[i].command, command[0]) == 0)
 		{
-			command_built_in[i].built_in(command, line, counter, name);
-			return (1);
+			return (command_built_in[i].built_in(command, line, counter, name));
 		}
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 

@@ -10,8 +10,9 @@
 * @line: llne of command
 * @counter: counter of simple shell
 * @name: name of program
+* Return: 2 if error exit
 */
-void exit_sh(char **command, char *line, int counter, char *name)
+int exit_sh(char **command, char *line, int counter, char *name)
 {
 	int status = 0;
 
@@ -26,4 +27,5 @@ void exit_sh(char **command, char *line, int counter, char *name)
 	{
 		error_exit(name, command, counter);
 	}
+	return (2);
 }

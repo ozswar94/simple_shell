@@ -67,8 +67,8 @@ int simple_shell(char *name)
 		command = _strsplit(line, ' ');
 		if (command == NULL)
 			continue;
-
-		if (check_built_in(command, line, counter, name) == 0)
+		error_command = check_built_in(command, line, counter, name);
+		if (error_command < 0)
 		{
 			command_path = search_path(command[0]);
 			if (command_path != NULL)
