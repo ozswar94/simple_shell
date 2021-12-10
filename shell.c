@@ -92,6 +92,7 @@ int simple_shell(char *name)
 * run_command - run command in new processus
 * @command_path: absolute path of file
 * @command: the line with argument
+* @env: environ variable
 *
 */
 void run_command(char *command_path, char **command, char **env)
