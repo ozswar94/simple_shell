@@ -6,9 +6,10 @@
  * @name: name of command
  * @help: function launch
  */
-typedef struct help_s {
-    char name[20];
-    void (*help)(void);
+typedef struct help_s
+{
+	char name[20];
+	void (*help)(void);
 } help_t;
 
 int help(char **command, char *line, int counter, char *name);
