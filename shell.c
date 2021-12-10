@@ -4,11 +4,20 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
-#include <errno.h>
+#include <signal.h>
 #include "shell.h"
 #include "error.h"
 
-
+/**
+* handler_ctrlc - manage ctrl + c
+* @c: void
+*/
+void handler_ctrlc(int c)
+{
+	(void)c;
+	_putchar('\n');
+	prompt();
+}
 
 /**
 * clean_line - remove char newline in line and replace \t to space
@@ -48,6 +57,7 @@ int simple_shell(char *name)
 	while (1)
 	{
 		prompt();
+		signal(SIGINT, handler_ctrlc);
 		if (getline(&line, &len_line, stdin) == EOF)
 		{
 			free(line);
@@ -95,7 +105,7 @@ void run_command(char *command_path, char **command)
 		if (execve(command_path, command, NULL) == (-1))
 		{
 			perror("Error:");
-			exit(EXIT_FAILURE);
+			exit(2);
 		}
 		exit(EXIT_SUCCESS);
 	}
@@ -104,5 +114,5 @@ void run_command(char *command_path, char **command)
 		wait(&status);
 		free(command_path);
 	}
-
 }
+
