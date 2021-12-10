@@ -1,5 +1,5 @@
 #include "shell.h"
-
+#include "help.h"
 
 /**
 * check_built_in - check of the command is a built-in
@@ -16,6 +16,7 @@ int check_built_in(char **command, char *line, int counter, char *name)
 	built_in_t command_built_in[] = {
 		{"env", print_env},
 		{"exit", exit_sh},
+		{"help", help},
 		{"\0", NULL},
 	};
 

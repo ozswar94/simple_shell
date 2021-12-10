@@ -1,0 +1,18 @@
+#!/bin/bash
+echo ls |./hsh
+
+echo ---------
+
+echo exit 23|./hsh
+echo $?
+echo ---------
+echo /bin/ls |./hsh
+echo ---------
+echo $?
+echo /bin/ls |sh
+echo ---------
+echo /bin/ls |./hsh
+echo ---------
+echo /bin/bin/ls |./hsh
+echo ---------
+echo /bin/bin/ls |./sh

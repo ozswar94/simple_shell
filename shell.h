@@ -27,4 +27,7 @@ char *search_path(char *command);
 void free_dptr(char **ptr);
 void run_command(char *command_path, char **command, char **env);
 
+/*help*/
+void help_exit(void);
+
 #endif /*SHELL_*/

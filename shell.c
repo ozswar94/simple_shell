@@ -77,7 +77,7 @@ int simple_shell(char *name)
 			}
 			else
 			{
-				not_found(name, command, counter);
+				error_not_found(name, command, counter);
 				error_command = 2;
 			}
 		}

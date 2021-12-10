@@ -29,3 +29,16 @@ int exit_sh(char **command, char *line, int counter, char *name)
 	}
 	return (2);
 }
+
+
+/**
+* help_exit - print in terminal info for use exit
+*/
+void help_exit(void)
+{
+	_printf("exit: exit [n]\n");
+	_printf("\tExit the shell.\n\n");
+	_printf("\tExits the shell with a status of N.");
+	_printf("  If N is omitted, the exit status\n");
+	_printf("\tis that of the last command executed.\n");
+}
