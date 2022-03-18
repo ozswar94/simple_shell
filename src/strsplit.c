@@ -1,8 +1,9 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "str_func.h"
 
 /**
-* _strlen - determine se sizeof ol string
+* _strlen - determine sizeof ol string
 * @s: string
 * Return: the size of s
 */
@@ -17,10 +18,11 @@ unsigned int _strlen(char *s)
 }
 
 /**
-* strtow - Each element of this array should contain
-* a single word, null-terminated
+* _strsplit - split string in tab_word
 * @str: string
-* Return: a pointer to an array of strings (words)
+* @c: word delimiter
+*
+* Return: tab of word or NULL
 */
 
 char **_strsplit(char *str, int c)
@@ -34,12 +36,12 @@ char **_strsplit(char *str, int c)
 			word++;
 	if (str == NULL || _strlen(str) == 0 || i == word)
 		return (NULL);
-	tab_word = (char **)malloc(sizeof(char *) * word + 1);
+	tab_word = malloc(sizeof(char *) * (word + 3));
 	if (tab_word == NULL)
 		return (NULL);
 	k = 0;
 	i = 0;
-	while (str[i] != '\0' && i < _strlen(str))
+	while (str[i])
 	{
 		j = 0;
 		while (str[i + j] && str[i + j] != c)
@@ -49,7 +51,7 @@ char **_strsplit(char *str, int c)
 			i++;
 			continue;
 		}
-		tab_word[k] = (char *)malloc(sizeof(char) * j + 1);
+		tab_word[k] = malloc(sizeof(char) * _strlen(str) + 1);
 		if (tab_word[k] == NULL)
 		{
 			for (j = 0; j < k; j++)
@@ -58,8 +60,8 @@ char **_strsplit(char *str, int c)
 			return (NULL);
 		}
 		for (j = 0; str[i + j] && str[i + j] != c; j++)
-			tab_word[k][j] = str[i + j];
-		tab_word[k][j] = '\0';
+			;
+		_strncpy(*(tab_word + k), (str + i), j);
 		k++;
 		i += j;
 	}
