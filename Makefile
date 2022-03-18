@@ -1,4 +1,4 @@
-NAME = bin/hsh
+NAME = hsh
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89 -g
 SRC := $(wildcard src/*.c)
