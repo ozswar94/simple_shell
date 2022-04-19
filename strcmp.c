@@ -13,6 +13,9 @@ int _strcmp(char *s1, char *s2)
 	int size_s1;
 	int size_s2;
 
+	if (!s1 || !s2)
+		return (0);
+
 	i = 0;
 	while (s1[i] && s2[i])
 	{
